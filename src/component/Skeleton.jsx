@@ -1,6 +1,9 @@
 /** TMDB default results per page */
 export const TMDB_PAGE_SIZE = 20;
 
+/** Poster placeholder — keep in sync with MovieCard image area while loading */
+export const POSTER_PLACEHOLDER_BG = "bg-gray-500";
+
 const cardClassName =
   "bg-zinc-400 rounded-xl overflow-hidden shadow-md w-full max-w-65 mx-auto";
 
@@ -38,7 +41,7 @@ function Skeleton({ className = "" }) {
     <div
       className={`
         relative overflow-hidden
-        bg-gray-200
+        ${POSTER_PLACEHOLDER_BG}
         ${className}
       `}
     >
@@ -49,7 +52,7 @@ function Skeleton({ className = "" }) {
           animate-[shimmer_2.2s_linear_infinite]
           bg-gradient-to-r
           from-transparent
-          via-white/30
+          via-zinc-300/20
           to-transparent
         "
       />

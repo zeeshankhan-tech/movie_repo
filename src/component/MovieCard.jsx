@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { POSTER_PLACEHOLDER_BG } from "./Skeleton";
 
 const POSTER_WIDTH = 500;
 const POSTER_HEIGHT = 750;
@@ -17,37 +18,46 @@ export const MovieCard = ({ movie }) => {
       className="bg-zinc-400 rounded-xl overflow-hidden shadow-md
       w-full max-w-65 mx-auto
       hover:scale-105 hover:shadow-2xl
-      transition-all duration-300 ease-in-out"
+      transition-transform duration-300 ease-in-out"
     >
       {/* Image */}
-      <div className="relative h-64 w-full overflow-hidden bg-zinc-500">
+      <div className={`relative h-64 w-full overflow-hidden ${POSTER_PLACEHOLDER_BG}`}>
 
         {/* Shimmer — shows while image is loading */}
-        {!imageLoaded && !imageError && (
+        {!imageLoaded && !imageError && posterSrc && (
           <div className="absolute inset-0 shimmer" />
         )}
 
         {/* Fallback — no poster or broken image */}
         {(!posterSrc || imageError) && (
-          <div className="absolute inset-0 bg-zinc-600 flex items-center justify-center text-zinc-400 text-xs">
+          <div
+            className={`absolute inset-0 ${POSTER_PLACEHOLDER_BG} flex items-center justify-center text-zinc-300 text-xs`}
+          >
             No Image
           </div>
         )}
 
         {posterSrc && !imageError && (
           <img
-            src={posterSrc}
-            alt={movie.title ?? movie.name}
-            width={POSTER_WIDTH}
-            height={POSTER_HEIGHT}
-            loading="lazy"
-            decoding="async"
-            onLoad={() => setImageLoaded(true)}
-            onError={() => { setImageError(true); setImageLoaded(true); }}
-            className={`h-64 w-full object-cover transition-opacity duration-500 hover:scale-110 ${
-              imageLoaded ? "opacity-100" : "opacity-0"
-            }`}
-          />
+      src={posterSrc}
+      alt={movie.title ?? movie.name}
+      loading="lazy"
+      decoding="async"
+      onLoad={() => setImageLoaded(true)}
+      onError={() => {
+        setImageError(true);
+        setImageLoaded(true);
+      }}
+      className={`
+        h-64 w-full object-cover
+        transition-all duration-300 ease-out
+        ${
+          imageLoaded
+            ? "opacity-100 scale-100"
+            : "opacity-0 scale-95"
+        }
+      `}
+    />
         )}
       </div>
 

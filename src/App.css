@@ -11,3 +11,15 @@ body {
     transform: translateX(100%);
   }
 }
+
+/* Matches Skeleton.jsx poster shimmer — used on MovieCard while image loads */
+.shimmer {
+  transform: translateX(-100%);
+  animation: shimmer 2.2s linear infinite;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgb(212 212 216 / 0.35),
+    transparent
+  );
+}
