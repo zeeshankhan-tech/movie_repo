@@ -50,7 +50,7 @@ function Skeleton({ className = "" }) {
           absolute inset-0
           -translate-x-full
           animate-[shimmer_2.2s_linear_infinite]
-          bg-gradient-to-r
+          bg-linear-to-r
           from-transparent
           via-zinc-300/20
           to-transparent
