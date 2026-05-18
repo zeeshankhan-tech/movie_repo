@@ -7,6 +7,9 @@ export const Component = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  
+  
+
   useEffect(() => {
     const fetchedMovies = async () => {
       try {

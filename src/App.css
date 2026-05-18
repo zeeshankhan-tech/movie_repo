@@ -2,7 +2,9 @@
 
 body {
   @apply bg-black text-white;
+  
 }
+
 
 @keyframes shimmer {
   100% {

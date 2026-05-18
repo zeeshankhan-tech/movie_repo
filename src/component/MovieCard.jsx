@@ -6,6 +6,8 @@ const POSTER_HEIGHT = 750;
 
 export const MovieCard = ({ movie }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+
   const posterSrc = movie.poster_path
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
     : null;
@@ -19,7 +21,20 @@ export const MovieCard = ({ movie }) => {
     >
       {/* Image */}
       <div className="relative h-64 w-full overflow-hidden bg-zinc-500">
-        {posterSrc && (
+
+        {/* Shimmer — shows while image is loading */}
+        {!imageLoaded && !imageError && (
+          <div className="absolute inset-0 shimmer" />
+        )}
+
+        {/* Fallback — no poster or broken image */}
+        {(!posterSrc || imageError) && (
+          <div className="absolute inset-0 bg-zinc-600 flex items-center justify-center text-zinc-400 text-xs">
+            No Image
+          </div>
+        )}
+
+        {posterSrc && !imageError && (
           <img
             src={posterSrc}
             alt={movie.title ?? movie.name}
@@ -28,7 +43,8 @@ export const MovieCard = ({ movie }) => {
             loading="lazy"
             decoding="async"
             onLoad={() => setImageLoaded(true)}
-            className={`h-64 w-full object-cover transition-opacity duration-300 hover:scale-110 ${
+            onError={() => { setImageError(true); setImageLoaded(true); }}
+            className={`h-64 w-full object-cover transition-opacity duration-500 hover:scale-110 ${
               imageLoaded ? "opacity-100" : "opacity-0"
             }`}
           />

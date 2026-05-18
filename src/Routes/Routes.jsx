@@ -15,11 +15,12 @@ export const Routes = createBrowserRouter([
     children: [
       {
         index:true,
-        lazy: () => import("../component/Home"),
-      },
+        lazy: () => import("../component/Home")
+      
+    },
       {
         path: "trending",
-        lazy: () => import("../pages/TrendingMovies"),
+        lazy: () => import("../pages/TrendingMovies")
       },
       {
         path: "bollywood",
