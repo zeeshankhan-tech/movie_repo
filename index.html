@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>vite-project</title>
     <style>
+      html,
+      body{
+        margin:0;
+        padding:0;
+      }
       #splash {
         position: fixed;
         inset: 0;
@@ -24,10 +29,12 @@
         width: 80px;
         height: 80px;
         animation: pulse 1.5s ease-in-out infinite; 
+        display: block;   /* added */
       }
 
       #splash p {
-        margin-top: 12px;
+        margin:12px 0 0;
+        height:20px;
         font-size: 14px;
         color: gray;
       }
@@ -40,7 +47,7 @@
   <body>
      <!-- Splash  -->
     <div id="splash">
-      <img src="./public/favicon.svg" />  
+      <img src="/favicon.svg" alt="logo" />
       <p>Loading...</p>
     </div>
     <div id="root"></div>
